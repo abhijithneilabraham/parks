@@ -25,7 +25,7 @@ print("Loaded model from disk")
 
 img=os.listdir("predict")[0]
 image=np.array(misc.imread("predict/"+img))
-get_image()
+#get_image()
 image = misc.imresize(image, (64, 64))
 image=np.array([image])
 image = image.astype('float32')
