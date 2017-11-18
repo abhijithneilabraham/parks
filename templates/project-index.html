@@ -69,7 +69,7 @@ function getLi( header, data ){
   // img = '<img src= '+ data['export_image_url'] == undefined ? "" : data['export_image_url'] +' width="100%" >';
   ul = '<ul class="collection">'
   for ( x in ks ){
-    ul+= '<li class="collection-item avatar"><span class="title">'+ ks[ x ] +'</span><p> ' + data[ x ] + '</p></li>';
+    ul+= '<li class="collection-item avatar"><span class="title"> <strong>'+ ks[ x ] +'</strong></span><p> ' + data[ x ] + '</p></li>';
   }
   ul += "</ul>";
 
