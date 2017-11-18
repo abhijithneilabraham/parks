@@ -34,18 +34,52 @@
   	</div>
   </div>
   </main>
+    <div id="modal1" class="modal">
+    <div class="modal-content">
+       <div class="beforeu hideme">
+         <h4>Uploading</h4>
+         <div class="progress">
+              <div class="determinate bar" ></div>
+          </div>        
+       </div>
+       <div class="hideme afteru">
+         <h4>Classifying</h4>
+          <div class="progress">
+            <div class="indeterminate"></div>
+          </div>
+       </div>
+       <div class="hideme doneu">
+         <h4 id="finale"> </h4>
+       </div>
+      </div>
   <script type="text/javascript" src="/static/test.js"></script>
 <script>
   $('form').ajaxForm({
-        beforeSend: function() {
+ beforeSend: function() {
+          
+          $('.btn').attr('disabled','true');
+          $('.hideme').hide();
+          $('.beforeu').show();
+
+         $('#modal1').modal('open');
+
             var percentVal = '0%';
+            bar.width(percentVal);
         },
         uploadProgress: function(event, position, total, percentComplete) {
             var percentVal = percentComplete + '%';
+            console.log(percentVal);
+            if( percentComplete > 80 && !uploaded){
+              uploaded = true
+          $('.hideme').hide();
+          $('.afteru').show();
+            }
+            bar.width(percentComplete);
         },
-        complete: function(xhr) { 
-           var  response = JSON.parse(xhr.responseText);
+        complete: function(xhr) {
+          $('.hideme').hide();
 
+           var  response = JSON.parse(xhr.responseText);
         }
   });
 
