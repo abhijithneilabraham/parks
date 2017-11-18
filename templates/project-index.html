@@ -52,7 +52,6 @@
          <div id="finale">
           <h4 id="finale-title"></h4> 
             <ul class="collapsible" id="ac" data-collapsible="accordion"> 
-              
             </ul>
           </div>
        </div>
@@ -64,15 +63,15 @@
   var status = $('#status');
   var uploaded = false;
 
+  ks = { "company_name": "Company", "descr" : "Description","area_name" : "Area", "municipality_name": "Address"  }
 function getLi( header, data ){
 // finale-title
   $("#finale-title").text( "Jobs for you..");
-  ks = { "company_name": "Company", "descr" : "Description","area_name" : "Area", "municipality_name": "Address"  }
   img = '<img src= '+ data['export_image_url'] == undefined ? "" : data['export_image_url'] +' width="100%" >';
   ul = '<ul class="collection">'
 
-  for ( x in ks ){ 
-    ul+= '<li class="collection-item avatar"><span class="title">'+ ks[ x ] +'</span><p> ' + data[ ks[x] ] + '</p></li>';
+  for ( x in ks ){
+    ul+= '<li class="collection-item avatar"><span class="title">'+ ks[ x ] +'</span><p> ' + data[ x ] + '</p></li>';
   }
   ul += "</ul>";
 
@@ -90,7 +89,6 @@ function getLi( header, data ){
           $('.beforeu').show();
 
          $('#modal1').modal('open');
-
             var percentVal = '0%';
             bar.width(percentVal);
         },
@@ -106,6 +104,7 @@ function getLi( header, data ){
         },
         complete: function(xhr) {
           $('.hideme').hide();
+          $('.doneu').show();
           // console.log(xhr.responseText);
           // alert('working');
            var  response = JSON.parse(xhr.responseText);
@@ -113,8 +112,9 @@ function getLi( header, data ){
            $("#ac").html("");
           for( i in response ){
             var aJob = response[i];
-            console.log( getLi( aJob['company_name'],aJob ) )
-            $("#ac").append( getLi( aJob['company_name'],aJob ) )
+            txt =  getLi( aJob['company_name'], aJob ) ;
+            console.log( txt );
+            // $("#ac").append( getLi( aJob['company_name'],aJob ) )
           }
           // return false
         }
