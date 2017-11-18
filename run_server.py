@@ -31,10 +31,10 @@ def get_hash():
 	return str(uuid.uuid4())
 
 def classify( imgName ):
-	#do predict calls here
-
-	# return True for handcap or False
-	return True
+	if int_to_word_out[np.argmax(prediction)] =="handicap":
+		return True
+	else:
+		return False
 
 @app.route('/')
 def root():
