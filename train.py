@@ -54,7 +54,7 @@ print(model.summary())
 #callbacks=[keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=0, verbose=0, mode='auto')]
 callbacks=[keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=0, batch_size=32, write_graph=True, write_grads=False, write_images=True, embeddings_freq=0, embeddings_layer_names=None, embeddings_metadata=None)]
 # Fit the model
-history=model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=epochs, batch_size=32,shuffle=True,callbacks=callbacks)
+history=model.fit(X_train, y_train, validation_data=(X_test, y_tes	t), epochs=epochs, batch_size=32,shuffle=True,callbacks=callbacks)
 
 # list all data in history
 print(history.history.keys())
