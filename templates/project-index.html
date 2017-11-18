@@ -23,11 +23,11 @@
   	<div class="row">
   		<div class="col m12 s12">
         <form method="post" action="classifyUpload" enctype="multipart/form-data">
-        <p><input type="file" name="file" accept="image/*" capture="camera" />
-         <input type="submit" value="Upload" >
+        <p><input type="file" name="file" class="input-field" onchange="this.form.submit()" accept="image/*" capture="camera" />
+         <input type="submit" value="Find.." class="btn btn-green" >
         </form>
         <br>
-        <h4 id="title" style="display:none"> Finding jobs for you.. please wait</h4>
+        <!-- <h4 id="title" style="display:none"> Finding jobs for you.. please wait</h4> -->
         <br>
         <div class='box'><img id="image" width="500" /></div>
   		</div>
@@ -49,15 +49,36 @@
           </div>
        </div>
        <div class="hideme doneu">
-         <h4 id="finale"> </h4>
+         <div id="finale">
+          <h4 id="finale-title"></h4> 
+            <ul class="collapsible" id="ac" data-collapsible="accordion"> 
+              
+            </ul>
+          </div>
        </div>
       </div>
   <script type="text/javascript" src="/static/test.js"></script>
 <script>
   $('.modal').modal();
-    var bar = $('.bar');
+  var bar = $('.bar');
   var status = $('#status');
   var uploaded = false;
+
+function getLi( header, data ){
+// finale-title
+  $("#finale-title").text( "Jobs for you..");
+  ks = { "company_name": "Company", "descr" : "Description","area_name" : "Area", "municipality_name": "Address"  }
+  img = '<img src= '+ data['export_image_url'] == undefined ? "" : data['export_image_url'] +' width="100%" >';
+  ul = '<ul class="collection">'
+
+  for ( x in ks ){ 
+    ul+= '<li class="collection-item avatar"><span class="title">'+ ks[ x ] +'</span><p> ' + data[ ks[x] ] + '</p></li>';
+  }
+  ul += "</ul>";
+
+  body = image+ul;
+  return '<li><div class="collapsible-header"> '+  header +'</div><div class="collapsible-body">'+ body +'</div></li>'
+}
 
   $('form').ajaxForm({
 
@@ -86,7 +107,14 @@
         complete: function(xhr) {
           $('.hideme').hide();
            var  response = JSON.parse(xhr.responseText);
-           $("#finale").text( response ); 
+           // $("#finale").text( response ); 
+           $("#ac").html("");
+           response = _test;
+          for( i in response ){
+            var aJob = response[i];
+
+            getLi( aJob['company_name'],aJob )
+          }
         }
   });
 
