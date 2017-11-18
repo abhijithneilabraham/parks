@@ -38,11 +38,10 @@ document.getElementById("file").onchange = function () {
     var reader = new FileReader();
     reader.onload = function (e) {
         document.getElementById("image").src = e.target.result;
+        document.getElementById("imgForm").submit(); 
     }; 
     document.getElementById("file").setAttribute('disabled','true')
     document.getElementById("title").style.display = "block";
-
-    document.getElementById("imgForm").submit(); 
     reader.readAsDataURL(this.files[0]);
 };
 </script>

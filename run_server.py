@@ -44,8 +44,10 @@ def root():
 
 @app.route('/classifyUpload', methods=['GET', 'POST'] )
 def upload_file():
+	return "yes"
 	if request.method == 'POST':
-		if file and allowed_file(file.filename):
+		file = request.files['file']
+		if file :
 			filename = secure_filename(file.filename)
 			filename+=get_hash()+filename
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))	
@@ -59,6 +61,7 @@ def upload_file():
 				#keywordList = [ normal keywords ]
 				pass
 			jobs = call_api_test( keywordList )
+			return 'yes'
 			return jobs
 	return '404'
 
