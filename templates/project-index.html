@@ -55,9 +55,15 @@
   <script type="text/javascript" src="/static/test.js"></script>
 <script>
   $('.modal').modal();
+    var bar = $('.bar');
+  var status = $('#status');
+  var uploaded = false;
+
   $('form').ajaxForm({
+
+    
  beforeSend: function() {
-          
+      
           $('.btn').attr('disabled','true');
           $('.hideme').hide();
           $('.beforeu').show();
