@@ -50,9 +50,8 @@
        </div>
        <div class="hideme doneu">
          <div id="finale">
-          <h4 id="finale-title"></h4> 
-            <ul class="collapsible" id="ac" data-collapsible="accordion"> 
-            </ul>
+          <ul class="collapsible" id="ac" data-collapsible="accordion"> 
+          </ul>
           </div>
        </div>
       </div>
@@ -66,16 +65,14 @@
   ks = { "company_name": "Company", "descr" : "Description","area_name" : "Area", "municipality_name": "Address"  }
 function getLi( header, data ){
 // finale-title
-  $("#finale-title").text( "Jobs for you..");
-  img = '<img src= '+ data['export_image_url'] == undefined ? "" : data['export_image_url'] +' width="100%" >';
+  // img = '<img src= '+ data['export_image_url'] == undefined ? "" : data['export_image_url'] +' width="100%" >';
   ul = '<ul class="collection">'
-
   for ( x in ks ){
     ul+= '<li class="collection-item avatar"><span class="title">'+ ks[ x ] +'</span><p> ' + data[ x ] + '</p></li>';
   }
   ul += "</ul>";
 
-  body = image+ul;
+  body = ul;
   return '<li><div class="collapsible-header"> '+  header +'</div><div class="collapsible-body">'+ body +'</div></li>'
 }
 
@@ -108,13 +105,13 @@ function getLi( header, data ){
           // console.log(xhr.responseText);
           // alert('working');
            var  response = JSON.parse(xhr.responseText);
-           $("#finale").text( response ); 
+           // $("#finale").text( response ); 
            $("#ac").html("");
           for( i in response ){
             var aJob = response[i];
             txt =  getLi( aJob['company_name'], aJob ) ;
             console.log( txt );
-            // $("#ac").append( getLi( aJob['company_name'],aJob ) )
+            $("#ac").append( txt )
           }
           // return false
         }
