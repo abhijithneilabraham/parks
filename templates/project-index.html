@@ -85,8 +85,8 @@
         },
         complete: function(xhr) {
           $('.hideme').hide();
-
            var  response = JSON.parse(xhr.responseText);
+           $("#finale").text( response ); 
         }
   });
 
