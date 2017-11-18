@@ -106,13 +106,14 @@ function getLi( header, data ){
         },
         complete: function(xhr) {
           $('.hideme').hide();
-          console.log(xhr.responseText);
-          alert('working');
+          // console.log(xhr.responseText);
+          // alert('working');
            var  response = JSON.parse(xhr.responseText);
            $("#finale").text( response ); 
            $("#ac").html("");
           for( i in response ){
             var aJob = response[i];
+            console.log( getLi( aJob['company_name'],aJob ) )
             $("#ac").append( getLi( aJob['company_name'],aJob ) )
           }
           // return false
