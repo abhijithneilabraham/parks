@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Parks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" integrity="sha256-e22BQKCF7bb/h/4MFJ1a4lTRR2OuAe8Hxa/3tgU5Taw=" crossorigin="anonymous" />
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js" integrity="sha256-Cxf2osSjVdgIUDXd8CR70LjMnQD0TA908QL1v00EtMY=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/static/jquery.form.js"></script>
+</head>
+<body class="grey lighten-4">
+	<nav class="orange">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">Parks</a>
+    </div>
+  </nav>
+  <br>
+  <main>
+  	<div class="container">
+  	<div class="row">
+  		<div class="col m12 s12">
+        <form method="post" action="/classifyUpload" id="imgForm" accept="image/jpg,image/jpeg" enctype="multipart/form-data">
+          <input type="file" id="file" accept="image/*" capture="camera" />
+        </form>
+        <br>
+        <h4 id="title" style="display:none"> Finding jobs for you.. please wait</h4>
+        <br>
+        <div class='box'><img id="image" width="500" /></div>
+  		</div>
+  	</div>
+  </div>
+  </main>
+<script>
+document.getElementById("file").onchange = function () {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById("image").src = e.target.result;
+    }; 
+    document.getElementById("file").setAttribute('disabled','true')
+    document.getElementById("title").style.display = "block";
+
+    document.getElementById("imgForm").submit(); 
+    reader.readAsDataURL(this.files[0]);
+};
+</script>
+
+</body>
+</html>
