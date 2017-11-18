@@ -24,7 +24,7 @@
   		<div class="col m12 s12">
         <form method="post" action="classifyUpload" enctype="multipart/form-data">
         <p><input type="file" name="file" class="input-field" onchange="this.form.submit()" accept="image/*" capture="camera" />
-         <input type="submit" value="Find.." class="btn btn-green" >
+         <!-- <input type="submit" value="Find.." class="btn btn-green" > -->
         </form>
         <br>
         <!-- <h4 id="title" style="display:none"> Finding jobs for you.. please wait</h4> -->
@@ -106,13 +106,16 @@ function getLi( header, data ){
         },
         complete: function(xhr) {
           $('.hideme').hide();
+          console.log(xhr.responseText);
+          alert('working');
            var  response = JSON.parse(xhr.responseText);
-           // $("#finale").text( response ); 
+           $("#finale").text( response ); 
            $("#ac").html("");
           for( i in response ){
             var aJob = response[i];
             $("#ac").append( getLi( aJob['company_name'],aJob ) )
           }
+          // return false
         }
   });
 

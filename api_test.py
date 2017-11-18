@@ -21,7 +21,7 @@ def call_api_test( keywordList ):
 	for text in keywordList:
 		url = "https://duunitori.fi/api/v1/5d3fc27dec93f5e5105e3443edfc421bb57c3603/jobentries?search="+text+"&format=json&city="+area
 		r = requests.get(url)
-		print r.text
+		# print r.text
 		tempJson = json.loads(r.text)
 		if "results" in  tempJson:
 			jobs = jobs + get5(tempJson['results'])
