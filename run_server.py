@@ -44,7 +44,6 @@ def root():
 
 @app.route('/classifyUpload', methods=['GET', 'POST'] )
 def upload_file():
-	return "yes"
 	if request.method == 'POST':
 		file = request.files['file']
 		if file :
@@ -54,16 +53,18 @@ def upload_file():
 			handicap = classify( filename )
 			if( handicap ):
 				keywordList = ["speaker", "interpreter", "teacher", "singer", "food tester", "Design Thinker"]
-
 				#keywordList = [ handicap keywords ]
 				pass
 			else:
 				#keywordList = [ normal keywords ]
 				pass
 			jobs = call_api_test( keywordList )
-			return 'yes'
-			return jobs
+			return redirect('/')
+			# return jobs
 	return '404'
 
 if __name__ == '__main__':
-	app.run()
+	app.jinja_env.auto_reload = True
+	app.config['TEMPLATES_AUTO_RELOAD'] = True
+	app.run(debug=True)
+

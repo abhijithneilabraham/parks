@@ -22,8 +22,9 @@
   	<div class="container">
   	<div class="row">
   		<div class="col m12 s12">
-        <form method="post" action="/classifyUpload" id="imgForm" accept="image/jpg,image/jpeg" enctype="multipart/form-data">
-          <input type="file" id="file" accept="image/*" capture="camera" />
+        <form method="post" action="/classifyUpload" enctype="multipart/form-data">
+          <input type="file" id="file" accept="image/*"/>
+          <button type="submit" class="btn " >confirm</button>
         </form>
         <br>
         <h4 id="title" style="display:none"> Finding jobs for you.. please wait</h4>
@@ -34,16 +35,19 @@
   </div>
   </main>
 <script>
-document.getElementById("file").onchange = function () {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        document.getElementById("image").src = e.target.result;
-        document.getElementById("imgForm").submit(); 
-    }; 
-    document.getElementById("file").setAttribute('disabled','true')
-    document.getElementById("title").style.display = "block";
-    reader.readAsDataURL(this.files[0]);
-};
+  $('form').ajaxForm({
+        beforeSend: function() {
+            var percentVal = '0%';
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            console.log(percentVal);
+        },
+        complete: function(xhr) { 
+           var  response = JSON.parse(xhr.responseText);
+        }
+  });
+
 </script>
 
 </body>
