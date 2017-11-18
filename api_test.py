@@ -24,15 +24,15 @@ def call_api_test( keywordList ):
 		print r.text
 		tempJson = json.loads(r.text)
 		if "results" in  tempJson:
-			jobs.append( get5(tempJson['results']) )
+			jobs = jobs + get5(tempJson['results'])
 
-		headers = {"Referer": "https://wayncheng.github.io/jobba/",'Origin': 'https://wayncheng.github.io', "X-Requested-With*": "XMLHttpRequest"}		
-		url = "https://cors.now.sh/http://api.indeed.com/ads/apisearch?publisher=422492215893931&userip=1.2.3.4&useragent=Chrome&v=2&format=json&limit=50&q="+text+"&city="+area
-		r = requests.get(url,headers=headers	)
-		tempJson = json.loads(r.text)
+		# headers = {"Referer": "https://wayncheng.github.io/jobba/",'Origin': 'https://wayncheng.github.io', "X-Requested-With*": "XMLHttpRequest"}		
+		# url = "https://cors.now.sh/http://api.indeed.com/ads/apisearch?publisher=422492215893931&userip=1.2.3.4&useragent=Chrome&v=2&format=json&limit=50&q="+text+"&city="+area
+		# r = requests.get(url,headers=headers	)
+		# tempJson = json.loads(r.text)
 
-		if "results" in  tempJson:
-			jobs.append( get5(tempJson['results']) )
+		# if "results" in  tempJson:
+		# 	jobs.append( get5(tempJson['results']) )
 		pass
 
 	shuffle(jobs)
