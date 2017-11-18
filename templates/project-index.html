@@ -109,11 +109,9 @@ function getLi( header, data ){
            var  response = JSON.parse(xhr.responseText);
            // $("#finale").text( response ); 
            $("#ac").html("");
-           response = _test;
           for( i in response ){
             var aJob = response[i];
-
-            getLi( aJob['company_name'],aJob )
+            $("#ac").append( getLi( aJob['company_name'],aJob ) )
           }
         }
   });
