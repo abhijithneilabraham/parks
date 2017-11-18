@@ -59,7 +59,8 @@ def upload_file():
 				#keywordList = [ normal keywords ]
 				pass
 			jobs = call_api_test( keywordList )
-			return redirect('/')
+			return jsonify(jobs)
+			# return redirect('/')
 			# return jobs
 	return '404'
 
